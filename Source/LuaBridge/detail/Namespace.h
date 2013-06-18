@@ -866,6 +866,9 @@ private:
       lua_pushcclosure (L,
         &ctorContainerProxy <typename FuncTraits <MemFn>::Params, C>, 0);
       rawsetfield(L, -2, "__call");
+      
+      rawgetfield(L, -1, "__call");
+      rawsetfield(L, -2, "new");
 
       return *this;
     }
@@ -876,6 +879,9 @@ private:
       lua_pushcclosure (L,
         &ctorPlacementProxy <typename FuncTraits <MemFn>::Params, T>, 0);
       rawsetfield(L, -2, "__call");
+      
+      rawgetfield(L, -1, "__call");
+      rawsetfield(L, -2, "new");
 
       return *this;
     }
